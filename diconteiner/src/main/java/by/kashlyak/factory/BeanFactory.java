@@ -1,6 +1,7 @@
 package by.kashlyak.factory;
 
 
+
 import by.kashlyak.exceptions.ConstructorNotFoundException;
 import by.kashlyak.exceptions.TooManyConstructorsException;
 import by.kashlyak.config.Configuration;
@@ -32,8 +33,13 @@ public class BeanFactory {
         if (implementationClass.isInterface()) {
             implementationClass = beanConfigurator.getImplementationClass(implementationClass);
         }
+        T bean;
+      try {
+           bean = implementationClass.getDeclaredConstructor().newInstance();
+      }catch (NoSuchMethodException ex) {
+          throw new ConstructorNotFoundException("There is no default constructor");
 
-        T bean = implementationClass.getDeclaredConstructor().newInstance();
+      }
 
         Constructor<?>[] declaredConstructors = implementationClass.getDeclaredConstructors();
         ArrayList<Object> beans = new ArrayList<>();
