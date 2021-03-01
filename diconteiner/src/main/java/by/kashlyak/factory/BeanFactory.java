@@ -48,12 +48,6 @@ public class BeanFactory {
         }
         if (count > 1) {
             throw new TooManyConstructorsException("Too many constructors with annotation @Inject");
-        } else if (count == 0) {
-            if (implementationClass.getDeclaredConstructor().newInstance() == null) {
-                throw new ConstructorNotFoundException("Constructor not found");
-            } else {
-                return bean;
-            }
         }
 
         for (Constructor<?> constr : declaredConstructors) {
