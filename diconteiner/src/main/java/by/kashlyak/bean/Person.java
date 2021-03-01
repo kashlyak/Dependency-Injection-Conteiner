@@ -4,8 +4,8 @@ import by.kashlyak.annotation.Inject;
 
 public class Person {
     Book book;
-    @Inject
 
+    @Inject
     public Person(Book book) {
         this.book = book;
     }
