@@ -1,5 +1,6 @@
 package by.kashlyak;
 
+import by.kashlyak.bean.Person;
 import by.kashlyak.context.ApplicationContext;
 import by.kashlyak.factory.BeanFactory;
 
@@ -17,6 +18,7 @@ public class Application {
         Application application = new Application();
         ApplicationContext context = application.run();
 
-
+        Person person = context.getBean(Person.class);
+        person.reedBook();
     }
 }
